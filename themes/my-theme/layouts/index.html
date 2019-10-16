@@ -1,0 +1,9 @@
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+
+<h2>Sections</h2>
+Start with click here!
+{{ range .Sections }}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{ end }}
+
+<h2>Single Pages</h2>
+{{ range .Pages }}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{ end }}

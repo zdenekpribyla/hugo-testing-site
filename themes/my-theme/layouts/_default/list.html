@@ -1,0 +1,5 @@
+<h1>{{ .Title }}</h1>
+
+{{ range sort ( where .Site.Data.products "id" "in" .Page.Params.product ) "rate" "asc"}}
+    {{ partial "single-review" . }}
+{{ end }}
