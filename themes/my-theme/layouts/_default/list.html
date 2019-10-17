@@ -1,5 +1,7 @@
 <h1>{{ .Title }}</h1>
 
-{{ range sort ( where .Site.Data.products "id" "in" .Page.Params.product ) "rate" "asc"}}
-    {{ partial "single-review" . }}
+{{ $ctx := . }}
+
+{{ range $index, $product := sort ( where .Site.Data.alldata.products "id" "in" .Page.Params.product ) "rate" "asc"}}
+    {{ partial "single-review" (dict "ctx" $ctx "index" $index "product" $product) }}
 {{ end }}
