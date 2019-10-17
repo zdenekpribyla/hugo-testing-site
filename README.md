@@ -16,9 +16,13 @@ there is data file `ingredients.yaml` and each product is composed of some of th
 
 3) One data file
 And finally, I want to keep all data in one file called `alldata.yaml`
-
 1,2,3 Done
 
 4) Table of Content for all headings
 I have put another partial `call-products` (just for removing `range` from `list.html`). And add some new heading element in `list.html`
 Now I need to display a `Table of Contents` for every `H` headings element on `/product-review/` page. Now it is working just for `.Content` headings.
+Done
+
+5) extend Table of Content (ToC) for H3
+I moved ToC to separate partial `toc.html` to get greater freedom with placing ToC in layout. Please check if it is OK like that.
+I add some h3 headings to _index.md and I need them to display in ToC (and of course behind the correct H2).
