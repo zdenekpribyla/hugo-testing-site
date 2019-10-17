@@ -23,6 +23,8 @@ I have put another partial `call-products` (just for removing `range` from `list
 Now I need to display a `Table of Contents` for every `H` headings element on `/product-review/` page. Now it is working just for `.Content` headings.
 Done
 
-5) extend Table of Content (ToC) for H3
+5) Separate Table of Content (ToC)
 I moved ToC to separate partial `toc.html` to get greater freedom with placing ToC in layout. Please check if it is OK like that.
+
+6) extend Table of Content for H3
 I add some h3 headings to _index.md and I need them to display in ToC (and of course behind the correct H2).
