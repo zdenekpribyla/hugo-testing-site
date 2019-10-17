@@ -14,7 +14,7 @@
     <!-- Make anchor id attribute -->
     {{ $id := $text | urlize }}
 
-    <!-- Replace id attribute if exists -->
+    <!-- Make sure heading has the newly create anchor id -->
     {{ $h2 := replaceRE `id="(?s).*?"` "" .  }}
     {{ $h2 := replaceRE "<h2" (print `<h2 id="` $id `" `) $h2 }}
 
