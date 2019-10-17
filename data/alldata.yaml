@@ -1,1 +1,35 @@
 
+products:
+- id: car
+  rate: 5
+  name: Car Audi
+  price: 1247
+  ingredients: ["metal", "textil", "rubber"]
+  url: /product-review/product-car
+- id: chair
+  rate: 1
+  name: Chair old
+  price: 229
+  ingredients: ["wood", "textil"]
+  url: /product-review/product-chair
+- id: shavel
+  rate: 3
+  name: Shavel Long
+  price: 99
+  ingredients: ["wood", "metal"]
+  url: /product-review/product-shavel
+
+ingredients:
+- id: textil
+  name: Textil
+  description: Lorem textil ipsum dolor sit amet, consectetuer adipiscing elit.
+- id: wood
+  name: Wood
+  description: Lorem wood ipsum dolor sit amet, consectetuer adipiscing elit.
+- id: metal
+  name: Metal
+  description: Lorem metal ipsum dolor sit amet, consectetuer adipiscing elit.
+- id: rubber
+  name: Rubber
+  description: Lorem rubber ipsum dolor sit amet, consectetuer adipiscing elit.
+
