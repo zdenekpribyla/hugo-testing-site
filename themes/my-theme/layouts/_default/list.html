@@ -1,10 +1,28 @@
+{{ $s := newScratch }}
+{{ $s.Set "toc" slice }}
+
+<!-- Create product <li> links -->
+{{ range sort ( where .Site.Data.alldata.products "id" "in" .Page.Params.product ) "rate" "asc" }}
+    {{ $id := .name | urlize }}
+    {{ $list_item := print `<li><a href="#` $id `">` .name `</a></li>` }}
+    {{ $s.Add "toc" $list_item }}
+{{ end }}
+
+<!-- find <li> links from TableOfContents -->
+{{ $toc_list_items := findRE "<li><a(?s).*?/li>" .TableOfContents }}
+
+<!-- Combine both product and content links -->
+{{ $s.Set "toc" (union ($s.Get "toc") $toc_list_items) }}
+
 <h1>{{ .Title }}</h1>
 <div>
     Table of content
-    {{.TableOfContents}}
+    <ul>
+    {{ range $s.Get "toc" }}
+    {{ . | safeHTML }}
+    {{ end }}
+    </ul>
 </div>
-<h2>Hardcoded Layout Heading</h2>
-<p>Is there any chance to have "Hardcoded Layout Heading" in TableOfContent? Not tu put manualy to code, but automatic.</p>
 
 {{ partial "call-products" . }}
 
