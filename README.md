@@ -16,3 +16,9 @@ there is data file `ingredients.yaml` and each product is composed of some of th
 
 3) One data file
 And finally, I want to keep all data in one file called `alldata.yaml`
+
+1,2,3 Done
+
+4) Table of Content for all headings
+I have put another partial `call-products` (just for removing `range` from `list.html`). And add some new heading element in `list.html`
+Now I need to display a `Table of Contents` for every `H` headings element on `/product-review/` page. Now it is working just for `.Content` headings.

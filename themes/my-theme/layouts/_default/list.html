@@ -1,7 +1,11 @@
 <h1>{{ .Title }}</h1>
+<div>
+    Table of content
+    {{.TableOfContents}}
+</div>
+<h2>Hardcoded Layout Heading</h2>
+<p>Is there any chance to have "Hardcoded Layout Heading" in TableOfContent? Not tu put manualy to code, but automatic.</p>
 
-{{ $ctx := . }}
+{{ partial "call-products" . }}
 
-{{ range $index, $product := sort ( where .Site.Data.alldata.products "id" "in" .Page.Params.product ) "rate" "asc"}}
-    {{ partial "single-review" (dict "ctx" $ctx "index" $index "product" $product) }}
-{{ end }}
+<p>{{ .Content }}</p>

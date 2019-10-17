@@ -10,7 +10,7 @@
 
 <div style="border: 1px solid orange; padding: 10px; margin-bottom: 20px; width: 25%">
     <div class="order-number">NUMBER of order <b>{{ $s.Get "index" }}</b></div>
-    <h3>{{ .product.name }}</h3>
+    <h2>{{ .product.name }}</h2>
     <p>{{ .product.price }} USD</p>
     <p>Product Contains:
         <ul>
@@ -20,5 +20,4 @@
         </ul>
     </p>
     <p><a href="{{ .product.url }}">Detail Here</a></p>
-
 </div>
