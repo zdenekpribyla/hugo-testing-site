@@ -1,11 +1,37 @@
+{{ $s := newScratch }}
+{{ $s.Set "toc" slice }}
+{{ $s.Set "content" .Content }}
+
 <h1>{{ .Title }}</h1>
+
+<!-- Find all h2 headings -->
+{{ $h2s := findRE "<h2(?s).*?/h2>" .Content }}
+{{ range $h2s }}
+    <!-- Get inner heading text -->
+    {{ $text := replaceRE "<h2(?s).*?>" "" . }}
+    {{ $text := replaceRE "</h2(?s).*?>" "" $text }}
+
+    <!-- Make anchor id attribute -->
+    {{ $id := $text | urlize }}
+
+    <!-- Replace id attribute if exists -->
+    {{ $h2 := replaceRE `id="(?s).*?"` "" .  }}
+    {{ $h2 := replaceRE "<h2" (print `<h2 id="` $id `" `) $h2 }}
+
+    <!-- Add heading with link to toc -->
+    {{ $s.Add "toc" (dict "text" $text "link" (print "#" $id)) }}
+
+    <!-- Replace heading in content with heading that includes a id attribute -->
+    {{ $s.Set "content" (replace ($s.Get "content") . $h2) }}
+{{ end }}
+
 <div>
     Table of content
-    {{.TableOfContents}}
+    <ul>
+        {{ range ($s.Get "toc") }}
+            <li><a href="{{ .link }}">{{ .text }}</a></li>
+        {{ end }}
+    </ul>
 </div>
-<h2>Hardcoded Layout Heading</h2>
-<p>Is there any chance to have "Hardcoded Layout Heading" in TableOfContent? Not tu put manualy to code, but automatic.</p>
 
-{{ partial "call-products" . }}
-
-<p>{{ .Content }}</p>
+<p>{{ $s.Get "content" | markdownify }}</p>
