@@ -1,0 +1,23 @@
+{{ $.Scratch.Set "toc" slice }}
+{{ $.Scratch.Set "content" .Content }}
+
+<!-- Find all h2 headings -->
+{{ $h2s := findRE "<h2(?s).*?/h2>" .Content }}
+{{ range $h2s }}
+    <!-- Get inner heading text -->
+    {{ $text := replaceRE "<h2(?s).*?>" "" . }}
+    {{ $text := replaceRE "</h2(?s).*?>" "" $text }}
+
+    <!-- Make anchor id attribute -->
+    {{ $id := $text | urlize }}
+
+    <!-- Make sure heading has the newly create anchor id -->
+    {{ $h2 := replaceRE `id="(?s).*?"` "" .  }}
+    {{ $h2 := replaceRE "<h2" (print `<h2 id="` $id `" `) $h2 }}
+
+    <!-- Add heading with link to toc -->
+    {{ $.Scratch.Add "toc" (dict "text" $text "link" (print "#" $id)) }}
+
+    <!-- Replace heading in content with heading that includes a id attribute -->
+    {{ $.Scratch.Set "content" (replace ($.Scratch.Get "content") . $h2) }}
+{{ end }}

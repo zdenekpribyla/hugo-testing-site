@@ -1,9 +1,16 @@
-
+{{/* Always needs to be added before calling .Content, because this sets the "content" and "toc" */}}
+{{ partial "toc-init" . }}
 
 <h1>{{ .Title }}</h1>
 
 {{/* is this neccesary ?  <p>{{ $s.Get "content" | markdownify }}</p> Because I use only .Content and it is working */}}
+{{/* Yes, the TOC shows up correctly but the link is broken since the product doesnt have an id attribute */}}
 
-{{ .Content }}
+{{/* So it depends if we need "$.Scratch.Get "content" | markdownify" or just ".Content". The reason to use "$.Scratch.Get "content" | markdownify" is because the product headings currently do not have an "id" attribute which is needed to link the TOC with the heading */}}
+{{/* There Are 2 options we could do : */}}
+{{/* 1. Add this automatically by using a replaceRE function as in the partial "toc-init" */}}
+{{/* 2. Write the id manually for each product heading */}}
+
+{{ $.Scratch.Get "content" | markdownify }}
 
 {{ partial "toc" . }}
