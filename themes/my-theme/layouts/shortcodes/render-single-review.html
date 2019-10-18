@@ -1,3 +1,5 @@
-{{ range where .Site.Data.alldata.products ".id" "in" (.Get 0) }} {{ partial "single-review" .}} {{ end }}
+{{ range $index, $product := where .Site.Data.alldata.products ".id" "in" (.Get 0) }} 
+    {{ partial "single-review" (dict "ctx" $ "product" $product "index" $index) }} 
+{{ end }}
 
 
