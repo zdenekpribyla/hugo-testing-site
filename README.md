@@ -28,3 +28,12 @@ I moved ToC to separate partial `toc.html` to get greater freedom with placing T
 
 6) extend Table of Content for H3
 I add some h3 headings to _index.md and I need them to display in ToC (and of course behind the correct H2).
+Leave this task for now
+
+7) include other H2 in layout to ToC
+See list.html. I add new H2 element `This heading is not in ToC` directly hardcoded in layout. But this heading is not included in ToC. Just take a look if there is some easy solution. If not, just go away. This is not critical function.
+
+8) Single product review in text
+Sometimes, I need to put single product review directly in the middle of .md text (between headings).
+See _index.md to understand what I mean ( I commented out ). So call product via shortcode `render-single-review.html` and after it has to be ranged and renderd by `single-review.html` (yes, we can use special partial for that, but it would be duplicity of single-review.html more less).
+I have error with `<add .index 1>` so try to find solution.

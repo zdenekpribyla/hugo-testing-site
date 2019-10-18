@@ -1,7 +1,7 @@
 products:
 - id: car
   rate: 5
-  name: Car Audi
+  name: Car žšíé Audi
   price: 1247
   ingredients: ["metal", "textil", "rubber"]
   url: /product-review/product-car
