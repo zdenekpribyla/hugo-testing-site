@@ -4,7 +4,7 @@
 
 <!-- Get ingredients -->
 {{ range .product.ingredients }}
-    {{ $ingredient := where $.ctx.Site.Data.alldata.ingredients "id" . }}
+    {{ $ingredient := where $.ctx.Site.Data.ingredients "id" . }}
     {{ $s.Add "ingredients" $ingredient }}
 {{ end }}
 
