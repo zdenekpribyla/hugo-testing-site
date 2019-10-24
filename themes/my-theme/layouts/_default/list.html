@@ -1,3 +1,5 @@
+{{ define "main" }}
+
 {{/* Always needs to be added before calling .Content, because this sets the "content" and "toc" */}}
 {{ partial "toc-init" . }}
 
@@ -16,3 +18,5 @@ Is possible to include this headings to Table of Content?
 {{ $.Scratch.Get "content" | markdownify }}
 
 {{ partial "toc" . }}
+
+{{ end }}
