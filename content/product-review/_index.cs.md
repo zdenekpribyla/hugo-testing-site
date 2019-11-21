@@ -1,5 +1,5 @@
 ---
-Title: Product review cateogory page
+Title: Product review cateogory page CS
 product: ["car", "shavel", "chair"]
 ---
 This is product review category page

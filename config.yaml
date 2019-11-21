@@ -1,8 +1,16 @@
 baseURL: http://example.org/
-languageCode: en-us
+languageCode: cs
 title: My New Hugo Site
 theme: my-theme
 removePathAccents: true
 # Remove diacritics from path:
 # https://discourse.gohugo.io/t/accents-replacement-with-natural-letter/20185/7
+defaultContentLanguage: cs
+languages:
+  cs:
+    languageName: česky
+    weight: 1
+  sk:
+    languageName: slovenský
+    weight: 2
 

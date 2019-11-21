@@ -1,25 +1,32 @@
 <div class="container" style="margin-top: 150px">
     <h2>Image processing</h2>
+    {{ range .Site.Pages }}
+    {{ if .Page.Params.isOnHomepage }}
     <div>
+        <h3>{{ .Title}}</h3>
         {{ $url1 := "images/"}}
         {{ $url2 := index (last 1 (split (delimit (split .RelPermalink "/") "," "") ",")) 0 }}
-        {{ $url3 := "name.jpg"}}
+        {{ $url3 := ".jpg"}}
         {{ $url := delimit (slice $url1 $url2 $url3) "" }}
-
-        {{ $url }}
         {{ $img := resources.Get $url }}
-        {{ $img := $img.Resize "350x" }}
-        {{ $secImg := $img | resources.Fingerprint "sha512"}}
-        <img src="{{ $secImg.Permalink }}">
+        {{ with $img }}
+            {{ $img = $img.Resize "100x" }}
+            {{ $secImg := $img | resources.Fingerprint "sha512"}}
+            <a href="{{ .Permalink }}"><img src="{{ $secImg.Permalink }}"></a>
+        {{ end}}
     </div>
+    {{ end }}
+    {{ end }}
 </div>
 
 <h1>{{ .Title }}</h1>
 {{ .Content }}
 
 <h2>Sections</h2>
+<p>It should range best-article and product-review but range two times product-review</p>
 Start with click here!
 {{ range .Sections }}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{ end }}
 
 <h2>Single Pages</h2>
+<p>Here I want to range only single pages (I mean all products from all sections..)</p>
 {{ range .Pages }}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{ end }}
