@@ -10,7 +10,6 @@
         {{ $img := resources.Get $url }}
         
         {{ with $img }}
-            {{ $img = resources.Get $url }}
             {{ $img = $img.Resize "350x" }}
             {{ $secImg := $img | resources.Fingerprint "sha512"}}
             <img src="{{ $secImg.Permalink }}">
