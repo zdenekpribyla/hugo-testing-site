@@ -1,5 +1,5 @@
 ---
-Title: Product review cateogory page CS
+Title: Best Article
 product: ["car", "shavel", "chair"]
 isOnHomepage: true
 ---
