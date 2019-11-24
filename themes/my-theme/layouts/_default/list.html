@@ -1,9 +1,9 @@
 {{ define "main" }}
 <div class="container" style="margin-top: 150px">
-    <h2>Image processing - {{ .Title }}</h2>
+    <h2>{{ .Title }} - Image processing</h2>
     <div>
         {{ $url1 := "images/"}}
-        {{ $url2 := index (last 1 (split (delimit (split .RelPermalink "/") "," "") ",")) 0 }}
+        {{ $url2 := index (last 1 (split (delimit (split ( .Section | urlize ) "/") "," "") ",")) 0 }}
         {{ $url3 := ".jpg"}}
         {{ $url := delimit (slice $url1 $url2 $url3) "" }}
         {{ $img := resources.Get $url }}

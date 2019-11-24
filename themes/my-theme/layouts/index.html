@@ -1,5 +1,6 @@
 {{ define "main" }}
 
+<h1>{{ .Title }}</h1>
 <div class="container" style="margin-top: 150px">
     <h2>Image processing</h2>
     {{ range .Site.Pages }}
@@ -21,12 +22,16 @@
     {{ end }}
 </div>
 
-<h1>{{ .Title }}</h1>
-{{ .Content }}
+<h2>Multilang Image processing</h2>
+<p>I want to show the same image for every lagnuage version (for ex. in category product-review the same image product-review.jpg in cs and also in sk lang version)</p>
+<p>But sk version has different url (defined in front-matter), so the image url in template is not equal with real image name.</p>
+<p>So in list.html, row 6, I changed .RelPermalink to .Section | urlize, because I need to get name of folder (not url of _index.sk.md)</p>
+<p>But this is not working for subcategory product-brand which is inside the product-review.</p>
+<p>subcategory product-brand displays image valids for category product-revivew</p>
+<p>So, How to get name of folder (or .RelPermalink of folder) and use it in other language version? </p>
 
 <h2>Sections</h2>
 <p>It should range best-article and product-review but range two times product-review</p>
-Start with click here!
 {{ range .Sections }}<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>{{ end }}
 
 <h2>Single Pages</h2>
