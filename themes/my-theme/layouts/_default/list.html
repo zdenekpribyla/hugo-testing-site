@@ -13,6 +13,7 @@
             {{ $secImg := $img | resources.Fingerprint "sha512"}}
             <img src="{{ $secImg.Permalink }}">
         {{ end}}
+        {{ .Dir }}
     </div>
 </div>
 
