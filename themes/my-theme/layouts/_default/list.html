@@ -3,17 +3,16 @@
     <h2>{{ .Title }} - Image processing</h2>
     <div>
         {{ $url1 := "images/"}}
-        {{ $url2 := index (last 1 (split (delimit (split ( .Dir | urlize ) "/") "," "") ",")) 0 }}
+        {{ $url2 := index (last 2 (split .Dir "/")) 0 }}
         {{ $url3 := ".jpg"}}
         {{ $url := delimit (slice $url1 $url2 $url3) "" }}
         {{ $img := resources.Get $url }}
-        {{ $img }}
+        {{ $url }}
         {{ with $img }}
             {{ $img = $img.Resize "150x" }}
             {{ $secImg := $img | resources.Fingerprint "sha512"}}
             <img src="{{ $secImg.Permalink }}">
         {{ end}}
-        {{ .Dir }}
     </div>
 </div>
 
