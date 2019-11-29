@@ -3,9 +3,17 @@
 {{ $s.Set "ingredients" slice }}
 
 <!-- Get ingredients -->
-{{ range .product.ingredients }}
-    {{ $ingredient := where $.ctx.Site.Data.ingredients "id" . }}
-    {{ $s.Add "ingredients" $ingredient }}
+<!-- Get ingredients -->
+{{ if eq .Site.Language.Lang "sk" }}
+    {{ range .product.ingredients }}
+        {{ $ingredient := where $.ctx.Site.Data.ingredientsSK "id" . }}
+        {{ $s.Add "ingredients" $ingredient }}
+    {{ end }}
+{{ else }}
+    {{ range .product.ingredients }}
+        {{ $ingredient := where $.ctx.Site.Data.ingredients "id" . }}
+        {{ $s.Add "ingredients" $ingredient }}
+    {{ end }}
 {{ end }}
 
 <div class="order-number">NUMBER of order <b>{{ $s.Get "index" }}</b></div>
