@@ -2,18 +2,19 @@
 {{ $s.Set "index" (add .index 1) }}
 {{ $s.Set "ingredients" slice }}
 
-<!-- Get ingredients -->
-<!-- Get ingredients -->
-{{ if eq .Site.Language.Lang "sk" }}
-    {{ range .product.ingredients }}
-        {{ $ingredient := where $.ctx.Site.Data.ingredientsSK "id" . }}
-        {{ $s.Add "ingredients" $ingredient }}
-    {{ end }}
-{{ else }}
-    {{ range .product.ingredients }}
-        {{ $ingredient := where $.ctx.Site.Data.ingredients "id" . }}
-        {{ $s.Add "ingredients" $ingredient }}
-    {{ end }}
+<!-- Get the current language and make it uppercase -->
+{{ $lang := upper $.ctx.Site.Language }}
+
+<!-- Get the default ingredients file -->
+{{ $ingredients := $.ctx.Site.Data.ingredients }}
+<!-- If its not default language, get the ingredients file by language -->
+{{ if ne $lang "CS" }}
+{{ $ingredients = index $.ctx.Site.Data (print "ingredients" $lang) }}
+{{ end }}
+
+{{ range .product.ingredients }}
+    {{ $ingredient := where $ingredients "id" . }}
+    {{ $s.Add "ingredients" $ingredient }}
 {{ end }}
 
 <div class="order-number">NUMBER of order <b>{{ $s.Get "index" }}</b></div>
