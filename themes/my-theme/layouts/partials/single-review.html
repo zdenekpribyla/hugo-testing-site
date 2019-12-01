@@ -5,12 +5,8 @@
 <!-- Get the current language and make it uppercase -->
 {{ $lang := upper $.ctx.Site.Language }}
 
-<!-- Get the default ingredients file -->
-{{ $ingredients := $.ctx.Site.Data.ingredients }}
-<!-- If its not default language, get the ingredients file by language -->
-{{ if ne $lang "CS" }}
-{{ $ingredients = index $.ctx.Site.Data (print "ingredients" $lang) }}
-{{ end }}
+<!-- Get the ingredients file of a specific language /data/ingredients<LANGUAGE CODE>.yaml. If not exist, use the default /data/ingredients.yaml file-->
+{{ $ingredients := index $.ctx.Site.Data (print "ingredients" $lang) | default $.ctx.Site.Data.ingredients }}
 
 {{ range .product.ingredients }}
     {{ $ingredient := where $ingredients "id" . }}
