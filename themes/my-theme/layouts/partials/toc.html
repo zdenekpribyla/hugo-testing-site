@@ -1,0 +1,8 @@
+<div>
+    Table of content
+    <ul>
+        {{ range ($.Scratch.Get "toc") }}
+            <li><a href="{{ .link }}">{{ .text }}</a></li>
+        {{ end }}
+    </ul>
+</div>

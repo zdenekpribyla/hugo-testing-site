@@ -2,22 +2,25 @@
 {{ $s.Set "index" (add .index 1) }}
 {{ $s.Set "ingredients" slice }}
 
-<!-- Get ingredients -->
+<!-- Get the current language and make it uppercase -->
+{{ $lang := upper $.ctx.Site.Language }}
+
+<!-- Get the ingredients file of a specific language /data/ingredients<LANGUAGE CODE>.yaml. If not exist, use the default /data/ingredients.yaml file-->
+{{ $ingredients := index $.ctx.Site.Data (print "ingredients" $lang) | default $.ctx.Site.Data.ingredients }}
+
 {{ range .product.ingredients }}
-    {{ $ingredient := where $.ctx.Site.Data.alldata.ingredients "id" . }}
+    {{ $ingredient := where $ingredients "id" . }}
     {{ $s.Add "ingredients" $ingredient }}
 {{ end }}
 
-<div style="border: 1px solid orange; padding: 10px; margin-bottom: 20px; width: 25%">
-    <div class="order-number">NUMBER of order <b>{{ $s.Get "index" }}</b></div>
-    <h2>{{ .product.name }}</h2>
-    <p>{{ .product.price }} USD</p>
-    <p>Product Contains:
-        <ul>
-            {{ range $s.Get "ingredients" }}
-            <li><b>{{ .name }}</b>: {{ .description }}</li>
-            {{ end }}
-        </ul>
-    </p>
-    <p><a href="{{ .product.url }}">Detail Here</a></p>
-</div>
+<div class="order-number">NUMBER of order<b>{{ $s.Get "index" }}</b></div>
+<h2>{{ .product.name }}</h2>
+<p>{{ .product.price }} USD</p>
+<p>Product Contains:
+    <ul>
+        {{- range $s.Get "ingredients" -}}
+        <li><b>{{ .name }} (3 pieces)</b> <!-- here something like: number of pieces -->: {{ .description }}</li>
+        {{- end -}}
+    </ul>
+</p>
+<p><a href="{{ .product.url }}">Detail Here</a></p>

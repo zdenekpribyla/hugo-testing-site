@@ -1,11 +1,38 @@
-<h1>{{ .Title }}</h1>
-<div>
-    Table of content
-    {{.TableOfContents}}
+{{ define "main" }}
+<div class="container" style="margin-top: 150px">
+    <h2>{{ .Title }} - Image processing</h2>
+    <div>
+        {{ $url1 := "images/"}}
+        {{ $url2 := index (last 1 (split (path.Dir .Dir) "/")) 0 }}
+        {{ $url3 := ".jpg"}}
+        {{ $url := delimit (slice $url1 $url2 $url3) "" }}
+        {{ $img := resources.Get $url }}
+
+        {{ with $img }}
+            {{ $img = $img.Resize "150x" }}
+            {{ $secImg := $img | resources.Fingerprint "sha512"}}
+            <img src="{{ $secImg.Permalink }}">
+        {{ end}}
+    </div>
 </div>
-<h2>Hardcoded Layout Heading</h2>
-<p>Is there any chance to have "Hardcoded Layout Heading" in TableOfContent? Not tu put manualy to code, but automatic.</p>
 
-{{ partial "call-products" . }}
+{{/* Always needs to be added before calling .Content, because this sets the "content" and "toc" */}}
+{{ partial "toc-init" . }}
 
-<p>{{ .Content }}</p>
+<h1>{{ .Title }}</h1>
+
+<h2>This heading is not in ToC</h2>
+Is possible to include this headings to Table of Content?
+{{/* is this neccesary ?  <p>{{ $s.Get "content" | markdownify }}</p> Because I use only .Content and it is working */}}
+{{/* Yes, the TOC shows up correctly but the link is broken since the product doesnt have an id attribute */}}
+
+{{/* So it depends if we need "$.Scratch.Get "content" | markdownify" or just ".Content". The reason to use "$.Scratch.Get "content" | markdownify" is because the product headings currently do not have an "id" attribute which is needed to link the TOC with the heading */}}
+{{/* There Are 2 options we could do : */}}
+{{/* 1. Add this automatically by using a replaceRE function as in the partial "toc-init" */}}
+{{/* 2. Write the id manually for each product heading */}}
+
+{{ $.Scratch.Get "content" | markdownify }}
+
+{{ partial "toc" . }}
+
+{{ end }}
