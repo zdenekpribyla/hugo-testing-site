@@ -13,13 +13,13 @@
     {{ $s.Add "ingredients" $ingredient }}
 {{ end }}
 
-<div class="order-number">NUMBER of order <b>{{ $s.Get "index" }}</b></div>
+<div class="order-number">NUMBER of order<b>{{ $s.Get "index" }}</b></div>
 <h2>{{ .product.name }}</h2>
 <p>{{ .product.price }} USD</p>
 <p>Product Contains:
     <ul>
         {{- range $s.Get "ingredients" -}}
-        <li><b>{{ .name }}</b>: {{ .description }}</li>
+        <li><b>{{ .name }} (3 pieces)</b> <!-- here something like: number of pieces -->: {{ .description }}</li>
         {{- end -}}
     </ul>
 </p>

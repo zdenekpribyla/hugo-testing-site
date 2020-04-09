@@ -7,7 +7,7 @@
         {{ $url3 := ".jpg"}}
         {{ $url := delimit (slice $url1 $url2 $url3) "" }}
         {{ $img := resources.Get $url }}
-        {{ $url }}
+
         {{ with $img }}
             {{ $img = $img.Resize "150x" }}
             {{ $secImg := $img | resources.Fingerprint "sha512"}}

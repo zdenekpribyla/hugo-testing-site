@@ -1,6 +1,7 @@
 ---
-Title: Product review cateogory page CS
-product: ["car", "shavel", "chair"]
+Title: Product review cateogory page CS (content - product-review - _index.cs)
+product: [ "car", "shavel", "chair"]
+productAndPieces: [{item: car, pcs: 3}, {item: shavel, pcs: 12}, {item: chair, pcs: 7}]
 ---
 This is product review category page
 
