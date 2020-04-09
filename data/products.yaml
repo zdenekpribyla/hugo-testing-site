@@ -2,18 +2,21 @@
   rate: 5
   name: Car žšíé Audi
   price: 1247
-  ingredients: ["metal", "textil", "rubber"]
+  ingredients-new: [{item: metal, pcs: 12}, {item: textil, pcs: 3}, {item: rubber, pcs: 6}]
+  ingredients: [metal, textil, rubber]
   url: /product-review/product-car
 - id: chair
   rate: 1
   name: Chair old
   price: 229
-  ingredients: ["wood", "textil"]
+  ingredients-new: [{item: wood, pcs: 4}, {item: textil, pcs: 1}]
+  ingredients: [wood, textil]
   url: /product-review/product-chair
 - id: shavel
   rate: 3
   name: Shavel Long
   price: 99
-  ingredients: ["wood", "metal"]
+  ingredients-new: [{item: wood, pcs: 1}, {item: metal, pcs:2}]
+  ingredients: [wood, metal]
   url: /product-review/product-shavel
 
