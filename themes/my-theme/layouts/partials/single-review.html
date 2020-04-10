@@ -6,7 +6,7 @@
 {{ $lang := upper $.ctx.Site.Language }}
 
 <!-- Get the ingredients file of a specific language /data/ingredients<LANGUAGE CODE>.yaml. If not exist, use the default /data/ingredients.yaml file-->
-{{ $ingredients := index $.ctx.Site.Data (print "ingredients" $lang) | default $.ctx.Site.Data.ingredients }}
+{{ $ingredients := index $.ctx.Site.Data (print "ingredients" $lang) | default $.ctx.Site.Data.ingredients.cs }}
 
 {{ range .product.ingredients }}
     {{ $ingredient := where $ingredients "id" . }}
@@ -20,12 +20,7 @@
     <ul>
         {{- range $s.Get "ingredients" -}}
         {{ $ingredients_new := index (where (index $.product "ingredients-new") "item" .id) 0 }}
-        <li><b>
-            {{ .name }} 
-            {{ with $ingredients_new.pcs }}
-                ({{ . }} pieces)
-            {{end}}
-            </b> <!-- here something like: number of pieces -->: {{ .description }}</li>
+        <li><b>{{ .name }}{{ with $ingredients_new.pcs }}({{ . }} pieces){{end}}</b> <!-- here something like: number of pieces -->: {{ .description }}</li>
         {{- end -}}
     </ul>
 </p>
