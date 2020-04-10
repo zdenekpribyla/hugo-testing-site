@@ -20,7 +20,12 @@
     <ul>
         {{- range $s.Get "ingredients" -}}
         {{ $ingredients_new := index (where (index $.product "ingredients-new") "item" .id) 0 }}
-        <li><b>{{ .name }} {{ if $ingredients_new.pcs }}({{ $ingredients_new.pcs }} pieces){{end}}</b> <!-- here something like: number of pieces -->: {{ .description }}</li>
+        <li><b>
+            {{ .name }} 
+            {{ with $ingredients_new.pcs }}
+                ({{ . }} pieces)
+            {{end}}
+            </b> <!-- here something like: number of pieces -->: {{ .description }}</li>
         {{- end -}}
     </ul>
 </p>
