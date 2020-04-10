@@ -19,7 +19,8 @@
 <p>Product Contains:
     <ul>
         {{- range $s.Get "ingredients" -}}
-        <li><b>{{ .name }} (3 pieces)</b> <!-- here something like: number of pieces -->: {{ .description }}</li>
+        {{ $ingredients_new := index (where (index $.product "ingredients-new") "item" .id) 0 }}
+        <li><b>{{ .name }} ({{ $ingredients_new.pcs }} pieces)</b> <!-- here something like: number of pieces -->: {{ .description }}</li>
         {{- end -}}
     </ul>
 </p>
