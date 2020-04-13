@@ -11,3 +11,17 @@ cs:
 - id: rubber
   name: Rubber
   description: Lorem rubber ipsum dolor sit amet, consectetuer adipiscing elit.
+
+sk:
+- id: textil
+  name: SK Textil
+  description: Lorem textil ipsum dolor sit amet, consectetuer adipiscing elit.
+- id: wood
+  name: SK Wood
+  description: Lorem wood ipsum dolor sit amet, consectetuer adipiscing elit.
+- id: metal
+  name: SK Metal
+  description: Lorem metal ipsum dolor sit amet, consectetuer adipiscing elit.
+- id: rubber
+  name: SK Rubber
+  description: Lorem rubber ipsum dolor sit amet, consectetuer adipiscing elit.
