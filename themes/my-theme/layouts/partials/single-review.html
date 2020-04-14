@@ -9,8 +9,8 @@
 {{ $ingredients := index $.ctx.Site.Data.ingredients $lang }} <!-- instead of hardocoded "cs", I need variable language code, depend on .Page language, please see a new ingredients.yaml structure -->
 
 {{ range (index .product "ingredients-new") }}
-    {{ $ingredient := where $ingredients "id" .item }}
-    {{ $s.Add "ingredients" $ingredient }}
+    {{ $ingredient := index (where $ingredients "id" .item) 0 }}
+    {{ $s.Add "ingredients" (dict "from_product" . "from_ingredients" $ingredient) }}
 {{ end }}
 
 <div class="order-number">NUMBER of order<b>{{ $s.Get "index" }}</b></div>
@@ -18,9 +18,8 @@
 <p>{{ .product.price }} USD</p>
 <p>Product Contains:
     <ul>
-        {{- range $s.Get "ingredients" -}}
-        {{ $ingredients_new := index (where (index $.product "ingredients-new") "item" .id) 0 }}
-        <li><b>{{ .name }}{{ with $ingredients_new.pcs }}({{ . }} pieces){{end}}</b> <!-- here something like: number of pieces -->: {{ .description }}</li>
+        {{- range sort ($s.Get "ingredients") "from_product.pcs" -}}
+        <li><b>{{ .from_ingredients.name }}{{ with .from_product.pcs }}({{ . }} pieces){{end}}</b> <!-- here something like: number of pieces -->: {{ .from_ingredients.description }}</li>
         {{- end -}}
     </ul>
 </p>
