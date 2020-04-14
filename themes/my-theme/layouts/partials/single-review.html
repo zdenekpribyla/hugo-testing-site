@@ -3,10 +3,10 @@
 {{ $s.Set "ingredients" slice }}
 
 <!-- Get the current language and make it uppercase -->
-{{ $lang := upper $.ctx.Site.Language }}
+{{ $lang := $.ctx.Site.Language.Lang }}
 
 <!-- Get the ingredients file of a specific language /data/ingredients<LANGUAGE CODE>.yaml. If not exist, use the default /data/ingredients.yaml file-->
-{{ $ingredients := index $.ctx.Site.Data.ingredients.cs }} <!-- instead of hardocoded "cs", I need variable language code, depend on .Page language, please see a new ingredients.yaml structure -->
+{{ $ingredients := index $.ctx.Site.Data.ingredients $lang }} <!-- instead of hardocoded "cs", I need variable language code, depend on .Page language, please see a new ingredients.yaml structure -->
 
 {{ range .product.ingredients }}
     {{ $ingredient := where $ingredients "id" . }}
