@@ -8,8 +8,8 @@
 <!-- Get the ingredients file of a specific language /data/ingredients<LANGUAGE CODE>.yaml. If not exist, use the default /data/ingredients.yaml file-->
 {{ $ingredients := index $.ctx.Site.Data.ingredients $lang }} <!-- instead of hardocoded "cs", I need variable language code, depend on .Page language, please see a new ingredients.yaml structure -->
 
-{{ range .product.ingredients }}
-    {{ $ingredient := where $ingredients "id" . }}
+{{ range (index .product "ingredients-new") }}
+    {{ $ingredient := where $ingredients "id" .item }}
     {{ $s.Add "ingredients" $ingredient }}
 {{ end }}
 
